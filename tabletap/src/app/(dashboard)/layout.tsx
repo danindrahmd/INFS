@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
 interface NavItem {
@@ -41,28 +42,9 @@ const KitchenIcon = () => (
   </svg>
 );
 
-const InventoryIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-    <path d="M4 3a2 2 0 100 4h12a2 2 0 100-4H4z" />
-    <path fillRule="evenodd" d="M3 8h14v7a2 2 0 01-2 2H5a2 2 0 01-2-2V8zm5 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z" clipRule="evenodd" />
-  </svg>
-);
-
 const StaffIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
     <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
-  </svg>
-);
-
-const AnalyticsIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-    <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z" />
-  </svg>
-);
-
-const SettingsIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-    <path fillRule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clipRule="evenodd" />
   </svg>
 );
 
@@ -76,13 +58,7 @@ const mainNavigation: NavItem[] = [
 
 const operationsNavigation: NavItem[] = [
   { name: 'Kitchen Display', href: '/kitchen', icon: KitchenIcon },
-  { name: 'Inventory', href: '/inventory', icon: InventoryIcon },
   { name: 'Staff', href: '/staff', icon: StaffIcon },
-];
-
-const adminNavigation: NavItem[] = [
-  { name: 'Analytics', href: '/analytics', icon: AnalyticsIcon },
-  { name: 'Settings', href: '/settings', icon: SettingsIcon },
 ];
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
@@ -92,8 +68,16 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     <div className="min-h-screen bg-gray-100">
       {/* Sidebar */}
       <div className="fixed inset-y-0 left-0 w-64 bg-white shadow-sm z-10 overflow-y-auto">
-        <div className="flex h-16 items-center justify-center border-b border-gray-200">
-          <h2 className="text-2xl font-bold text-blue-600">TableTap</h2>
+        <div className="flex h-16 items-center justify-center border-b border-gray-200 p-2">
+          <div className="relative h-12 w-auto">
+            <Image
+              src="/images/logo/table-tap-high-resolution-logo-transparent.png"
+              alt="TableTap Logo"
+              fill
+              style={{ objectFit: 'contain' }}
+              priority
+            />
+          </div>
         </div>
         <nav className="mt-5 px-2">
           <div className="space-y-1 pb-5">
@@ -122,31 +106,6 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             </h3>
             <div className="mt-2 space-y-1 pb-5">
               {operationsNavigation.map((item) => {
-                const isActive = pathname === item.href || pathname.startsWith(`${item.href}/`);
-                return (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    className={`group flex items-center px-2 py-2 text-base font-medium rounded-md ${
-                      isActive
-                        ? 'bg-blue-50 text-blue-600'
-                        : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
-                    }`}
-                  >
-                    <item.icon />
-                    <span className="ml-3">{item.name}</span>
-                  </Link>
-                );
-              })}
-            </div>
-          </div>
-          
-          <div className="pt-2">
-            <h3 className="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">
-              Administration
-            </h3>
-            <div className="mt-2 space-y-1">
-              {adminNavigation.map((item) => {
                 const isActive = pathname === item.href || pathname.startsWith(`${item.href}/`);
                 return (
                   <Link

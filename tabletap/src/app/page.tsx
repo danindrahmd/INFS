@@ -11,7 +11,11 @@ export default function HomePage() {
           <div className="flex h-16 justify-between">
             <div className="flex">
               <div className="flex flex-shrink-0 items-center">
-                <span className="text-xl font-bold text-blue-600">TableTap</span>
+                <img
+                  src="/images/logo/table-tap-high-resolution-logo-transparent.png"
+                  alt="TableTap Logo"
+                  className="h-12 w-auto"
+                />
               </div>
             </div>
             <div className="flex items-center">

@@ -7,7 +7,13 @@ interface CardProps {
 
 export function Card({ className, children }: CardProps) {
   return (
-    <div className={clsx('rounded-lg border bg-white shadow-sm', className)}>
+    <div
+      className={clsx(
+        'rounded-xl shadow-md border border-gray-200 bg-white',
+        'text-gray-900 overflow-hidden transition-all',
+        className
+      )}
+    >
       {children}
     </div>
   );
@@ -20,7 +26,12 @@ interface CardHeaderProps {
 
 export function CardHeader({ className, children }: CardHeaderProps) {
   return (
-    <div className={clsx('px-6 py-4 border-b', className)}>
+    <div
+      className={clsx(
+        'px-6 py-4 border-b border-gray-200 bg-white text-gray-900',
+        className
+      )}
+    >
       {children}
     </div>
   );
@@ -33,7 +44,7 @@ interface CardTitleProps {
 
 export function CardTitle({ className, children }: CardTitleProps) {
   return (
-    <h3 className={clsx('text-lg font-semibold text-gray-900', className)}>
+    <h3 className={clsx('text-lg font-semibold', className)}>
       {children}
     </h3>
   );
@@ -46,7 +57,7 @@ interface CardContentProps {
 
 export function CardContent({ className, children }: CardContentProps) {
   return (
-    <div className={clsx('px-6 py-4', className)}>
+    <div className={clsx('px-6 py-4 text-gray-700', className)}>
       {children}
     </div>
   );
@@ -59,7 +70,12 @@ interface CardFooterProps {
 
 export function CardFooter({ className, children }: CardFooterProps) {
   return (
-    <div className={clsx('px-6 py-4 border-t bg-gray-50 rounded-b-lg', className)}>
+    <div
+      className={clsx(
+        'px-6 py-4 border-t border-gray-200 bg-white text-gray-700',
+        className
+      )}
+    >
       {children}
     </div>
   );

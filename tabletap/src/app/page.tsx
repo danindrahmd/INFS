@@ -1,158 +1,110 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import Button from '@/components/ui/button';
+import { Sparkles, QrCode, ClipboardList } from 'lucide-react';
 
 export default function HomePage() {
   return (
-    <div className="bg-white">
-      {/* Header/Navigation */}
-      <header className="bg-white shadow-sm">
-        <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex h-16 justify-between">
-            <div className="flex">
-              <div className="flex flex-shrink-0 items-center">
-                <img
-                  src="/images/logo/table-tap-high-resolution-logo-transparent.png"
-                  alt="TableTap Logo"
-                  className="h-12 w-auto"
-                />
-              </div>
-            </div>
-            <div className="flex items-center">
-              <Link href="/login">
-                <Button variant="outline" size="sm" className="mr-3">
-                  Log in
-                </Button>
-              </Link>
-              <Link href="/register">
-                <Button size="sm">Sign up</Button>
-              </Link>
-            </div>
+    <div className="min-h-screen bg-gradient-to-b from-black via-gray-800 to-white text-white">
+      {/* Header */}
+      <header className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
+        <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+          <div className="flex items-center gap-2">
+            <img
+              src="/images/logo/table-tap-high-resolution-logo-transparent.png"
+              alt="TableTap Logo"
+              className="h-10 w-auto"
+            />
           </div>
-        </nav>
+          <div className="flex gap-3">
+            <Link href="/login">
+              <Button variant="outline" size="sm" className="border-gray-700 text-gray-800 hover:bg-gray-100">
+                Log in
+              </Button>
+            </Link>
+            <Link href="/register">
+              <Button size="sm" className="bg-black text-white hover:bg-gray-900">
+                Sign up
+              </Button>
+            </Link>
+          </div>
+        </div>
       </header>
 
       {/* Hero Section */}
-      <div className="relative isolate">
-        <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-              Transform your restaurant's ordering experience
-            </h1>
-            <p className="mt-6 text-lg leading-8 text-gray-600">
-              TableTap allows your customers to scan, order, and pay—all from their mobile device. No app downloads required.
-            </p>
-            <div className="mt-10 flex items-center justify-center gap-x-6">
-              <Link href="/register">
-                <Button size="lg">Get started</Button>
-              </Link>
-              <Link href="#how-it-works" className="text-sm font-semibold leading-6 text-gray-900">
-                Learn more <span aria-hidden="true">→</span>
-              </Link>
-            </div>
-          </div>
+      <section className="flex flex-col items-center text-center py-32 px-4 bg-gradient-to-b from-black via-gray-800 to-white text-white">
+        <h1 className="text-5xl sm:text-6xl font-bold tracking-tight mb-6">
+          Revolutionize Dining with Effortless QR Ordering
+        </h1>
+        <p className="max-w-2xl text-lg text-gray-300 mb-8">
+          Say goodbye to paper menus and missed orders. TableTap brings a modern, contactless experience to every table.
+        </p>
+        <div className="flex gap-4 justify-center">
+          <Link href="/register">
+            <Button size="lg" className="bg-white text-black hover:bg-gray-200">
+              Get Started
+            </Button>
+          </Link>
+          <Link href="#features">
+            <Button
+              size="lg"
+              className="border-gray-700 text-gray-800 hover:bg-gray-100"
+            >
+              Learn More
+            </Button>
+          </Link>
         </div>
-      </div>
-
-      {/* How It Works Section */}
-      <div id="how-it-works" className="bg-gray-50 py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">How TableTap works</h2>
-            <p className="mt-6 text-lg leading-8 text-gray-600">
-              Our simple 3-step process makes digital ordering accessible for any restaurant.
-            </p>
-          </div>
-          <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
-            <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
-              <div className="flex flex-col">
-                <dt className="text-base font-semibold leading-7 text-gray-900">
-                  <div className="mb-6 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600">
-                    <span className="text-white">1</span>
-                  </div>
-                  Create your digital menu
-                </dt>
-                <dd className="mt-1 flex flex-auto flex-col text-base leading-7 text-gray-600">
-                  <p className="flex-auto">
-                    Build your menu with categories, items, prices, and images through our easy-to-use dashboard.
-                  </p>
-                </dd>
-              </div>
-              <div className="flex flex-col">
-                <dt className="text-base font-semibold leading-7 text-gray-900">
-                  <div className="mb-6 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600">
-                    <span className="text-white">2</span>
-                  </div>
-                  Generate table QR codes
-                </dt>
-                <dd className="mt-1 flex flex-auto flex-col text-base leading-7 text-gray-600">
-                  <p className="flex-auto">
-                    Get unique QR codes for each table that you can print and display for your customers.
-                  </p>
-                </dd>
-              </div>
-              <div className="flex flex-col">
-                <dt className="text-base font-semibold leading-7 text-gray-900">
-                  <div className="mb-6 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600">
-                    <span className="text-white">3</span>
-                  </div>
-                  Receive and manage orders
-                </dt>
-                <dd className="mt-1 flex flex-auto flex-col text-base leading-7 text-gray-600">
-                  <p className="flex-auto">
-                    View incoming orders from your dashboard and track them through preparation to completion.
-                  </p>
-                </dd>
-              </div>
-            </dl>
-          </div>
-        </div>
-      </div>
+      </section>
 
       {/* Features Section */}
-      <div className="bg-white py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl sm:text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              Everything you need to streamline ordering
-            </h2>
-            <p className="mt-6 text-lg leading-8 text-gray-600">
-              TableTap provides powerful features to enhance the dining experience for both your staff and customers.
-            </p>
+      <section id="features" className="py-24 bg-gray-100 text-black">
+        <div className="max-w-6xl mx-auto px-6 text-center">
+          <h2 className="text-4xl font-bold mb-6">Why Choose TableTap?</h2>
+          <p className="text-lg text-gray-700 mb-16">
+            From setup to service, TableTap simplifies your operations and enhances your guest experience.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            <Feature icon={<Sparkles size={28} />} title="Instant Setup" desc="Launch your digital menu in minutes—no tech team needed." />
+            <Feature icon={<QrCode size={28} />} title="Smart QR Codes" desc="Each table gets a unique code to track and route orders precisely." />
+            <Feature icon={<ClipboardList size={28} />} title="Real-Time Orders" desc="Receive and manage orders from your live dashboard instantly." />
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="bg-white py-24 text-black text-center">
+        <h2 className="text-3xl font-bold">Join hundreds of modern restaurants using TableTap</h2>
+        <p className="mt-4 text-lg text-gray-700">
+          It’s fast, secure, and designed to impress your guests. Get started today.
+        </p>
+        <div className="mt-6">
+          <Link href="/register">
+            <Button size="lg">Create My Menu</Button>
+          </Link>
+        </div>
+      </section>
 
       {/* Footer */}
-      <footer className="bg-white">
-        <div className="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-24 lg:px-8">
-          <nav className="-mb-6 columns-2 sm:flex sm:justify-center sm:space-x-12" aria-label="Footer">
-            <div className="pb-6">
-              <a href="#" className="text-sm leading-6 text-gray-600 hover:text-gray-900">
-                About
-              </a>
-            </div>
-            <div className="pb-6">
-              <a href="#" className="text-sm leading-6 text-gray-600 hover:text-gray-900">
-                Features
-              </a>
-            </div>
-            <div className="pb-6">
-              <a href="#" className="text-sm leading-6 text-gray-600 hover:text-gray-900">
-                Pricing
-              </a>
-            </div>
-            <div className="pb-6">
-              <a href="#" className="text-sm leading-6 text-gray-600 hover:text-gray-900">
-                Contact
-              </a>
-            </div>
+      <footer className="bg-black text-white">
+        <div className="max-w-7xl mx-auto px-6 py-16 text-center">
+          <nav className="flex justify-center gap-6 text-sm mb-6">
+            <a href="#" className="hover:text-gray-300">About</a>
+            <a href="#" className="hover:text-gray-300">Features</a>
+            <a href="#" className="hover:text-gray-300">Pricing</a>
+            <a href="#" className="hover:text-gray-300">Contact</a>
           </nav>
-          <p className="mt-10 text-center text-xs leading-5 text-gray-500">
-            &copy; 2025 TableTap. All rights reserved.
-          </p>
+          <p className="text-xs text-gray-400">&copy; 2025 TableTap. All rights reserved.</p>
         </div>
       </footer>
+    </div>
+  );
+}
+
+function Feature({ icon, title, desc }: { icon: React.ReactNode; title: string; desc: string }) {
+  return (
+    <div className="flex flex-col items-center text-center">
+      <div className="mb-4 rounded-full bg-black p-3 text-white">{icon}</div>
+      <h3 className="font-semibold text-lg mb-2">{title}</h3>
+      <p className="text-gray-600">{desc}</p>
     </div>
   );
 }

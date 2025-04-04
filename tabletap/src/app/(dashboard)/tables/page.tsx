@@ -1,11 +1,11 @@
 'use client';
 
 import { useState } from 'react';
+import { PencilSquareIcon, TrashIcon, QrCodeIcon } from '@heroicons/react/24/solid';
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
 import Button from '@/components/ui/button';
 import QRCode from 'react-qr-code';
 
-// Mock data for tables
 const mockTables = [
   { id: 1, tableNumber: '1', seats: 2, status: 'Available' },
   { id: 2, tableNumber: '2', seats: 4, status: 'Occupied' },
@@ -23,17 +23,14 @@ export default function TablesPage() {
     setSelectedTable(table);
     setShowQRCode(true);
   };
-  
+
   return (
     <div className="p-6">
       <div className="mb-6 flex items-center justify-between">
         <h1 className="text-2xl font-bold text-gray-900">Table Management</h1>
-        <div>
-          <Button onClick={() => setShowAddTable(true)}>Add Table</Button>
-        </div>
+        <Button onClick={() => setShowAddTable(true)}>Add Table</Button>
       </div>
 
-      {/* Tables List */}
       <Card>
         <CardHeader>
           <CardTitle>Restaurant Tables</CardTitle>
@@ -43,16 +40,10 @@ export default function TablesPage() {
             <table className="min-w-full divide-y divide-gray-300">
               <thead>
                 <tr>
-                  <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
-                    Table Number
-                  </th>
-                  <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                    Seats
-                  </th>
-                  <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                    Status
-                  </th>
-                  <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
+                  <th className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Table Number</th>
+                  <th className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Seats</th>
+                  <th className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Status</th>
+                  <th className="relative py-3.5 pl-3 pr-4 sm:pr-6">
                     <span className="sr-only">Actions</span>
                   </th>
                 </tr>
@@ -73,19 +64,16 @@ export default function TablesPage() {
                         {table.status}
                       </span>
                     </td>
-                    <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                      <button
-                        onClick={() => handleShowQRCode(table)}
-                        className="text-blue-600 hover:text-blue-900 mr-4"
-                      >
-                        QR Code
+                    <td className="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 space-x-3">
+                      <button onClick={() => handleShowQRCode(table)} className="text-blue-600 hover:text-blue-900">
+                        <QrCodeIcon className="h-5 w-5" />
                       </button>
-                      <a href="#" className="text-blue-600 hover:text-blue-900 mr-4">
-                        Edit
-                      </a>
-                      <a href="#" className="text-red-600 hover:text-red-900">
-                        Delete
-                      </a>
+                      <button className="text-blue-600 hover:text-blue-900">
+                        <PencilSquareIcon className="h-5 w-5" />
+                      </button>
+                      <button className="text-red-600 hover:text-red-900">
+                        <TrashIcon className="h-5 w-5" />
+                      </button>
                     </td>
                   </tr>
                 ))}
@@ -95,7 +83,6 @@ export default function TablesPage() {
         </CardContent>
       </Card>
 
-      {/* Add Table Modal (simplified for mockup) */}
       {showAddTable && (
         <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center p-4 z-50">
           <Card className="w-full max-w-md">
@@ -111,7 +98,7 @@ export default function TablesPage() {
                   <input
                     type="text"
                     id="tableNumber"
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                   />
                 </div>
                 <div>
@@ -121,22 +108,19 @@ export default function TablesPage() {
                   <input
                     type="number"
                     id="seats"
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                   />
                 </div>
               </div>
             </CardContent>
             <CardFooter className="flex justify-end space-x-2">
-              <Button variant="outline" onClick={() => setShowAddTable(false)}>
-                Cancel
-              </Button>
+              <Button variant="outline" onClick={() => setShowAddTable(false)}>Cancel</Button>
               <Button onClick={() => setShowAddTable(false)}>Save</Button>
             </CardFooter>
           </Card>
         </div>
       )}
 
-      {/* QR Code Modal */}
       {showQRCode && selectedTable && (
         <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center p-4 z-50">
           <Card className="w-full max-w-md">
@@ -156,9 +140,7 @@ export default function TablesPage() {
               </p>
             </CardContent>
             <CardFooter className="flex justify-center space-x-2">
-              <Button variant="outline" onClick={() => setShowQRCode(false)}>
-                Close
-              </Button>
+              <Button variant="outline" onClick={() => setShowQRCode(false)}>Close</Button>
               <Button>Download</Button>
               <Button>Print</Button>
             </CardFooter>

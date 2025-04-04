@@ -14,6 +14,7 @@
     "@hookform/resolvers": "^5.0.1",
     "@types/recharts": "^1.8.29",
     "clsx": "^2.1.1",
+    "lucide-react": "^0.487.0",
     "next": "15.2.4",
     "next-auth": "^4.24.11",
     "qrcode.react": "^4.2.0",

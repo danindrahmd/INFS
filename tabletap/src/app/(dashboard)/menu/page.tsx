@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
 import Button from '@/components/ui/button';
+import { PlusCircle, FolderPlus, PenSquareIcon, TrashIcon } from 'lucide-react';
 
 // Mock data for menu categories
 const mockCategories = [
@@ -105,11 +106,12 @@ export default function MenuPage() {
       <div className="mb-6 flex items-center justify-between">
         <h1 className="text-2xl font-bold text-gray-900">Menu Management</h1>
         <div className="flex space-x-2">
-          <Button variant="outline" onClick={() => setShowAddCategory(true)}>
-            Add Category
-          </Button>
-          <Button onClick={() => setShowAddItem(true)}>Add Menu Item</Button>
-        </div>
+            <Button variant="outline" onClick={() => setShowAddCategory(true)}>
+              <FolderPlus className="mr-2 h-4 w-4" /> Add Category
+            </Button>
+            <Button onClick={() => setShowAddItem(true)}>
+              <PlusCircle className="mr-2 h-4 w-4" /> Add Menu Item
+            </Button>        </div>
       </div>
 
       {/* Category Filter */}
@@ -171,12 +173,20 @@ export default function MenuPage() {
                     </td>
                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{category.itemCount} items</td>
                     <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                      <a href="#" className="text-blue-600 hover:text-blue-900 mr-4">
+                      <button
+                        className="inline-flex items-center text-blue-600 hover:text-blue-900 mr-4"
+                        onClick={() => alert('Edit logic here')}
+                      >
+                        <PenSquareIcon className="h-5 w-5 mr-1" />
                         Edit
-                      </a>
-                      <a href="#" className="text-red-600 hover:text-red-900">
+                      </button>
+                      <button
+                        className="inline-flex items-center text-red-600 hover:text-red-900"
+                        onClick={() => alert('Delete logic here')}
+                      >
+                        <TrashIcon className="h-5 w-5 mr-1" />
                         Delete
-                      </a>
+                      </button>
                     </td>
                   </tr>
                 ))}
@@ -258,13 +268,18 @@ export default function MenuPage() {
                     <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                       <button
                         onClick={() => handleEditItem(item)}
-                        className="text-blue-600 hover:text-blue-900 mr-4"
+                        className="inline-flex items-center text-blue-600 hover:text-blue-900 mr-4"
                       >
+                        <PenSquareIcon className="h-5 w-5 mr-1" />
                         Edit
                       </button>
-                      <a href="#" className="text-red-600 hover:text-red-900">
+                      <button
+                        onClick={() => alert('Delete logic goes here')}
+                        className="inline-flex items-center text-red-600 hover:text-red-900"
+                      >
+                        <TrashIcon className="h-5 w-5 mr-1" />
                         Delete
-                      </a>
+                      </button>
                     </td>
                   </tr>
                 ))}

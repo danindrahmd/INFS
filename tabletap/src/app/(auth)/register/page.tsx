@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import Button from '@/components/ui/button';
 import { ArrowLeftIcon } from '@heroicons/react/24/solid';
-
+import Image from 'next/image';
 
 export default function RegisterPage() {
   const [formData, setFormData] = useState({
@@ -41,14 +41,16 @@ export default function RegisterPage() {
       </div>
       <div className="w-full max-w-md">
         <div className="text-center mb-6">
-          <img
+          <Image
             src="/images/logo/table-tap-high-resolution-logo-transparent.png"
             alt="TableTap Logo"
-            className="mx-auto h-16 w-auto drop-shadow-md"
+            className="mx-auto drop-shadow-md"
+            width={64}
+            height={64}
           />
           <h1 className="mt-4 text-3xl font-extrabold text-white">Create your account</h1>
           <p className="mt-2 text-sm text-gray-200">
-            Start modernizing your restaurant's ordering experience
+            Start modernizing your restaurant&apos;s ordering experience
           </p>
         </div>
 

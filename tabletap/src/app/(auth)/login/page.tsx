@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import Button from '@/components/ui/button';
 import { ArrowLeftIcon } from '@heroicons/react/24/solid';
+import Image from 'next/image';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -32,10 +33,12 @@ export default function LoginPage() {
       </div>
       <div className="w-full max-w-md">
         <div className="text-center mb-6">
-          <img
+          <Image
             src="/images/logo/table-tap-high-resolution-logo-transparent.png"
             alt="TableTap Logo"
-            className="mx-auto h-16 w-auto drop-shadow-md"
+            className="mx-auto drop-shadow-md"
+            width={64}
+            height={64}
           />
           <h1 className="mt-4 text-3xl font-extrabold text-white">Sign in to your account</h1>
         </div>
@@ -107,7 +110,7 @@ export default function LoginPage() {
         </div>
 
         <p className="mt-4 text-center text-sm text-gray-200">
-          Don't have an account?{' '}
+          Don&apos;t have an account?{' '}
           <Link href="/register" className="font-medium text-white hover:underline">
             Sign up now
           </Link>

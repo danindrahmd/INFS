@@ -1,4 +1,4 @@
-// This version of DashboardLayout includes a collapsible sidebar
+// src/app/(dashboard)/layout.tsx
 'use client';
 
 import Link from 'next/link';
@@ -15,6 +15,7 @@ import {
   ChevronLeftIcon,
   ChevronRightIcon,
 } from '@heroicons/react/24/solid';
+import ProtectedRoute from '@/components/auth/ProtectedRoute';
 
 interface NavItem {
   name: string;
@@ -35,6 +36,14 @@ const operationsNavigation: NavItem[] = [
 ];
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <ProtectedRoute allowedRoles={['owner']}>
+      <DashboardContent>{children}</DashboardContent>
+    </ProtectedRoute>
+  );
+}
+
+function DashboardContent({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [isCollapsed, setIsCollapsed] = useState(false);
 
@@ -44,12 +53,11 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       <div className={`relative z-10 bg-white shadow-sm transition-all duration-300 ${isCollapsed ? 'w-20' : 'w-64'}`}>
         <div className="flex h-16 items-center justify-between border-b border-gray-200 px-4">
           <div className="flex justify-center w-full">
-            <Image
+            <img
               src="/images/logo/table-tap-high-resolution-logo-transparent.png"
               alt="TableTap Logo"
               width={isCollapsed ? 40 : 100}
               height={48}
-              priority
             />
           </div>
           <button

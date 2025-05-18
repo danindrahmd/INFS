@@ -6,7 +6,15 @@ import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/componen
 import Button from '@/components/ui/button';
 import QRCode from 'react-qr-code';
 
-const mockTables = [
+// Define proper TypeScript interface for table
+interface Table {
+  id: number;
+  tableNumber: string;
+  seats: number;
+  status: string;
+}
+
+const mockTables: Table[] = [
   { id: 1, tableNumber: '1', seats: 2, status: 'Available' },
   { id: 2, tableNumber: '2', seats: 4, status: 'Occupied' },
   { id: 3, tableNumber: '3', seats: 6, status: 'Available' },
@@ -17,9 +25,9 @@ const mockTables = [
 export default function TablesPage() {
   const [showAddTable, setShowAddTable] = useState(false);
   const [showQRCode, setShowQRCode] = useState(false);
-  const [selectedTable, setSelectedTable] = useState<any>(null);
+  const [selectedTable, setSelectedTable] = useState<Table | null>(null);
 
-  const handleShowQRCode = (table: any) => {
+  const handleShowQRCode = (table: Table) => {
     setSelectedTable(table);
     setShowQRCode(true);
   };
@@ -83,6 +91,7 @@ export default function TablesPage() {
         </CardContent>
       </Card>
 
+      {/* Add Table Modal */}
       {showAddTable && (
         <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center p-4 z-50">
           <Card className="w-full max-w-md">
@@ -121,6 +130,7 @@ export default function TablesPage() {
         </div>
       )}
 
+      {/* QR Code Modal */}
       {showQRCode && selectedTable && (
         <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center p-4 z-50">
           <Card className="w-full max-w-md">

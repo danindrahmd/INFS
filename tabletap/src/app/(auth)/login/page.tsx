@@ -3,8 +3,9 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import Button from '@/components/ui/button';
+// Only import what you're using
+// import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
 import { ArrowLeftIcon } from '@heroicons/react/24/solid';
-import Image from 'next/image';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -33,12 +34,11 @@ export default function LoginPage() {
       </div>
       <div className="w-full max-w-md">
         <div className="text-center mb-6">
-          <Image
+          {/* Consider replacing with Next.js Image component */}
+          <img
             src="/images/logo/table-tap-high-resolution-logo-transparent.png"
             alt="TableTap Logo"
-            className="mx-auto drop-shadow-md"
-            width={64}
-            height={64}
+            className="mx-auto h-16 w-auto drop-shadow-md"
           />
           <h1 className="mt-4 text-3xl font-extrabold text-white">Sign in to your account</h1>
         </div>

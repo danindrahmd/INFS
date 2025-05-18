@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import Button from '@/components/ui/button';
-import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
 import { ArrowLeftIcon } from '@heroicons/react/24/solid';
 
 export default function LoginPage() {

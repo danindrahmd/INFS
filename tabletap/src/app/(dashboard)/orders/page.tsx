@@ -5,8 +5,6 @@ import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/componen
 import Button from '@/components/ui/button';
 import {
   EyeIcon,
-  PencilSquareIcon,
-  TrashIcon,
 } from '@heroicons/react/24/outline';
 
 interface OrderDetail {

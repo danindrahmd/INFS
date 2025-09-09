@@ -1,8 +1,24 @@
+// src/app/page.tsx
+'use client';
+
 import Link from 'next/link';
 import Button from '@/components/ui/button';
 import { Sparkles, QrCode, ClipboardList } from 'lucide-react';
+import { useState } from 'react';
+import { useAuth } from '@/contexts/AuthContext';
 
 export default function HomePage() {
+  const { user, userRole, logout } = useAuth();
+  const [showLoginOptions, setShowLoginOptions] = useState(false);
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+    } catch (error) {
+      console.error('Error logging out:', error);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-black via-gray-800 to-white text-white">
       {/* Header */}
@@ -16,16 +32,92 @@ export default function HomePage() {
             />
           </div>
           <div className="flex gap-3">
-            <Link href="/login">
-              <Button variant="outline" size="sm" className="border-gray-700 text-gray-800 hover:bg-gray-100">
-                Log in
-              </Button>
-            </Link>
-            <Link href="/register">
-              <Button size="sm" className="bg-black text-white hover:bg-gray-900">
-                Sign up
-              </Button>
-            </Link>
+            {user ? (
+              <>
+                {userRole === 'owner' && (
+                  <Link href="/dashboard">
+                    <Button size="sm" className="bg-black text-white hover:bg-gray-900">
+                      Dashboard
+                    </Button>
+                  </Link>
+                )}
+                {userRole === 'staff' && (
+                  <Link href="/kitchen">
+                    <Button size="sm" className="bg-black text-white hover:bg-gray-900">
+                      Kitchen
+                    </Button>
+                  </Link>
+                )}
+                <Button 
+                  onClick={handleLogout} 
+                  variant="outline" 
+                  size="sm" 
+                  className="border-gray-700 text-gray-800 hover:bg-gray-100"
+                >
+                  Log out
+                </Button>
+              </>
+            ) : (
+              <>
+                <div className="relative">
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="border-gray-700 text-gray-800 hover:bg-gray-100"
+                    onClick={() => setShowLoginOptions(!showLoginOptions)}
+                  >
+                    Log in
+                  </Button>
+                  {showLoginOptions && (
+                    <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10">
+                      <Link href="/login/customer">
+                        <button className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                          Customer Login
+                        </button>
+                      </Link>
+                      <Link href="/login/staff">
+                        <button className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                          Staff Login
+                        </button>
+                      </Link>
+                      <Link href="/login/owner">
+                        <button className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                          Restaurant Owner Login
+                        </button>
+                      </Link>
+                    </div>
+                  )}
+                </div>
+                <div className="relative">
+                  <Button 
+                    size="sm" 
+                    className="bg-black text-white hover:bg-gray-900"
+                    onClick={() => setShowLoginOptions(!showLoginOptions)}
+                  >
+                    Sign up
+                  </Button>
+                  {showLoginOptions && (
+                    <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10">
+                      <Link href="/register/customer">
+                        <button className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                          Customer Registration
+                        </button>
+                      </Link>
+                      <Link href="/register/staff">
+                        <button className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                          Staff Registration
+                        </button>
+                      </Link>
+                      <Link href="/register/owner">
+                        <button className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                          Restaurant Owner Registration
+                        </button>
+                      </Link>
+                    </div>
+                  )}
+                </div>
+              </>
+            )}
           </div>
         </div>
       </header>
@@ -39,7 +131,7 @@ export default function HomePage() {
           Say goodbye to paper menus and missed orders. TableTap brings a modern, contactless experience to every table.
         </p>
         <div className="flex gap-4 justify-center">
-          <Link href="/register">
+          <Link href="/register/owner">
             <Button size="lg" className="bg-white text-black hover:bg-gray-200">
               Get Started
             </Button>
@@ -47,7 +139,8 @@ export default function HomePage() {
           <Link href="#features">
             <Button
               size="lg"
-              className="border-gray-700 text-gray-800 hover:bg-gray-100"
+              variant="outline"
+              className="border-white text-white hover:bg-gray-800"
             >
               Learn More
             </Button>
@@ -74,10 +167,10 @@ export default function HomePage() {
       <section className="bg-white py-24 text-black text-center">
         <h2 className="text-3xl font-bold">Join hundreds of modern restaurants using TableTap</h2>
         <p className="mt-4 text-lg text-gray-700">
-          It’s fast, secure, and designed to impress your guests. Get started today.
+          It's fast, secure, and designed to impress your guests. Get started today.
         </p>
         <div className="mt-6">
-          <Link href="/register">
+          <Link href="/register/owner">
             <Button size="lg">Create My Menu</Button>
           </Link>
         </div>
